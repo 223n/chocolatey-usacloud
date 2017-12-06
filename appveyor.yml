@@ -1,11 +1,11 @@
 # AppVeyor file
-#   for Terraform Provider Sakuracloud
+#   for Usacloud
 
 ##############################################
 # Environment Configuration
 ##############################################
 
-version: 0.5.0.{build}
+version: 1.0.0.{build}
 
 environment:
   CHOCO_API_KEY:
@@ -13,7 +13,7 @@ environment:
 
 install:
   # Install Git
-  - git clone https://github.com/sacloud/chocolatey-usacloud
+  - git clone https://github.com/223n/chocolatey-usacloud
 
 ##############################################
 # Build Configuration
@@ -39,7 +39,7 @@ deploy_script:
       $version          = ((Invoke-RestMethod https://api.github.com/repos/sacloud/usacloud/releases/latest)[0] -split ";" | Select-String "tag_name=").ToString().Trim().Replace("tag_name=v", "");
       $versionText      = "usacloud version ... v" + $version;
       echo $versionText;
-      $appVeyorVersion  = $version + ${env:APPVEYOR_BUILD_VERSION}.Replace("0.5.0", "");
+      $appVeyorVersion  = $version + ${env:APPVEYOR_BUILD_VERSION}.Replace("1.0.0", "");
       $versionText      = "package version ... v" + $appVeyorVersion;
       echo $versionText;
       $zipX32           = 'usacloud_windows-386.zip';
