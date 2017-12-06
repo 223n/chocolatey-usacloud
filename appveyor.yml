@@ -24,7 +24,7 @@ install:
 
 build_script:
   - ps: |
-    $ErrorActionPreference = 'Continue'
+    $ErrorActionPreference = 'Continue';
     # Set values
     echo "Start deploy script ..";
     $version          = ((Invoke-RestMethod https://api.github.com/repos/sacloud/usacloud/releases/latest)[0] -split ";" | Select-String "tag_name=").ToString().Trim().Replace("tag_name=v", "");
