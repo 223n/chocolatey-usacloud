@@ -6,8 +6,8 @@
 ##############################################
 
 version: '{build}'
+
 max_jobs: 1
-image: WMF 5
 
 environment:
   CHOCO_API_KEY:
@@ -50,10 +50,6 @@ build_script:
       (Get-Content '.\tools\chocolateyinstall.ps1' -Raw).Replace("__VERSION__", "v$($version)").Replace("__HASH32__", $hash32).Replace("__HASH64__", $hash64) | Out-File '.\tools\chocolateyinstall.ps1';
       # Create chocolatey package
       choco pack;
-
-deploy_script:
-  -
-    ps: |
       # Check Install
       $packName = 'usacloud';
       choco install $packName -s .\ -f;
